@@ -50,7 +50,6 @@ def list_notes(_args: argparse.Namespace) -> None:
             print("No notes yet.")
             return
 
-        # Optional: reverse order (latest first)
         notes = list(notes)
         len_notes = len(notes)
 

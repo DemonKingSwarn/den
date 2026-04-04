@@ -18,7 +18,9 @@ def create_notes_file(project_dir_path: str) -> Path:
     return Path(notes_path)
 
 
-def add_note_file(project_notes_file_path: Path, args: argparse.Namespace) -> None:
+def add_note_in_notes_file(
+    project_notes_file_path: Path, args: argparse.Namespace
+) -> None:
     try:
         with open(project_notes_file_path, "r+") as f:
             try:

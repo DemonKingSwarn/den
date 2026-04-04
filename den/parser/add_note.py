@@ -10,7 +10,7 @@ from den.parser.project import (
 )
 from den.parser.note import (
     create_notes_file,
-    add_note_file,
+    add_note_in_notes_file,
 )
 
 
@@ -39,4 +39,4 @@ def add_note(args: argparse.Namespace) -> None:
 
     notes_path = create_notes_file(project_dir_path)
 
-    add_note_file(notes_path, args)
+    add_note_in_notes_file(notes_path, args)
