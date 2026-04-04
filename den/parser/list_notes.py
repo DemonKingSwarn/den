@@ -1,24 +1,25 @@
 import os
 import json
+import argparse
 from den import paths
-from den.parser import utils
+from den.parser.project import get_project_path, get_project
 
 
-def list_notes(args) -> None:
+def list_notes(_args: argparse.Namespace) -> None:
     """
     List all notes for the current project.
     """
-    project_path = utils.get_project_path()
+    project_path = get_project_path()
 
     if not str(project_path):
         print("Run inside a git project.")
         return
 
-    if not os.path.exists(paths.PROJECTS_FILE_PATH):
+    if not os.path.exists(os.path.join(paths.CONFIG_DIR_PATH, "projects.json")):
         print("No projects found.")
         return
 
-    project = utils.get_project(project_path)
+    project = get_project(project_path)
 
     if not project:
         print("Project not registered.")
@@ -50,10 +51,11 @@ def list_notes(args) -> None:
             return
 
         # Optional: reverse order (latest first)
-        notes = list(reversed(notes))
+        notes = list(notes)
+        len_notes = len(notes)
 
         for i, note in enumerate(notes, start=1):
-            print(f"[{i}] {note.get('created_at')}")
+            print(f"[{len_notes - i + 1}] {note.get('created_at')}")
             print(f"    {note.get('content')}")
             print()
 

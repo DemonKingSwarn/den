@@ -1,2 +1,5 @@
-def remove_notes(args):
+import argparse
+
+
+def remove_notes(_args: argparse.Namespace) -> None:
     pass

@@ -35,5 +35,5 @@ _parser_rm.add_argument("id", type=int)
 
 
 def execute() -> None:
-    args = _parser.parse_args()
+    args: argparse.Namespace = _parser.parse_args()
     args.func(args)
