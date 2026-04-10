@@ -1,42 +1,20 @@
-import os
 import argparse
-
-from den import paths
-from den.parser.project import (
-    get_project_path,
-    create_projects_file,
-    get_project,
-    add_project,
-)
-from den.parser.note import (
-    create_notes_file,
-    add_note_in_notes_file,
-)
+from den.parser.project import get as get_project
+from den.parser.note import add as add_note
 
 
-def add_note(args: argparse.Namespace) -> None:
-    project_path = get_project_path()
-
-    if not str(project_path):
-        print("Run inside a git project.")
+def execute(args: argparse.Namespace) -> None:
+    """
+    Add a note for the current project.
+    """
+    try:
+        project = get_project()
+    except ValueError as e:
+        print(e)
+        return
+    except OSError as e:
+        print(f"Project error: {e}")
         return
 
-    if not os.path.exists(os.path.join(paths.CONFIG_DIR_PATH, "projects.json")):
-        create_projects_file()
-
-    project = get_project(project_path)
-
-    if not project:
-        project = add_project(project_path)
-
-    project_dir_id = project.get("dir_id")
-
-    if not project_dir_id:
-        print("Invalid project entry.")
-        return
-
-    project_dir_path = os.path.join(paths.DATA_DIR_PATH, project_dir_id)
-
-    notes_path = create_notes_file(project_dir_path)
-
-    add_note_in_notes_file(notes_path, args)
+    project_uid = project.get("uid")
+    add_note(project_uid, args)

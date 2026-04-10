@@ -1,62 +1,49 @@
-import os
-import json
 import argparse
-from den import paths
-from den.parser.project import get_project_path, get_project
+import shutil
+from den import colors
+from den.parser.project import get as get_project
+from den.parser.notes_helper import load_notes, format_note_line, format_note_context
 
 
-def list_notes(_args: argparse.Namespace) -> None:
+def execute(_args: argparse.Namespace) -> None:
     """
     List all notes for the current project.
     """
-    project_path = get_project_path()
-
-    if not str(project_path):
-        print("Run inside a git project.")
+    try:
+        project = get_project()
+    except ValueError as e:
+        print(e)
+        return
+    except OSError as e:
+        print(f"Project error: {e}")
         return
 
-    if not os.path.exists(os.path.join(paths.CONFIG_DIR_PATH, "projects.json")):
-        print("No projects found.")
-        return
+    project_uid = project.get("uid")
 
-    project = get_project(project_path)
-
-    if not project:
-        print("Project not registered.")
-        return
-
-    project_dir_id = project.get("dir_id")
-
-    if not project_dir_id:
+    if not project_uid:
         print("Invalid project entry.")
         return
 
-    project_dir_path = os.path.join(paths.DATA_DIR_PATH, project_dir_id)
-    notes_path = os.path.join(project_dir_path, "notes.json")
+    notes = load_notes(project_uid)
 
-    if not os.path.exists(notes_path):
-        print("No notes found.")
+    if not notes:
+        print(colors.dim("  No notes yet."))
         return
 
-    try:
-        with open(notes_path, "r") as f:
-            try:
-                notes = json.load(f)
-            except json.JSONDecodeError:
-                print("Corrupted notes file.")
-                return
+    term_width = shutil.get_terminal_size((80, 24)).columns
+    len_notes = len(notes)
 
-        if not notes:
-            print("No notes yet.")
-            return
+    print()
+    print(
+        f"  {colors.bold('den')} {colors.dim(f'· {len_notes} note{"s" if len_notes != 1 else ""}')}"
+    )
+    print()
 
-        notes = list(notes)
-        len_notes = len(notes)
+    for i, note in enumerate(notes):
+        display_id = len_notes - i
+        print(format_note_line(display_id, note, width=term_width))
+        ctx = format_note_context(note)
+        if ctx:
+            print(ctx)
 
-        for i, note in enumerate(notes, start=1):
-            print(f"[{len_notes - i + 1}] {note.get('created_at')}")
-            print(f"    {note.get('content')}")
-            print()
-
-    except OSError as e:
-        print(f"Unable to read notes: {e}")
+    print()
