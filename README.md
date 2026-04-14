@@ -71,7 +71,7 @@ den add build a realtime terrain engine
 **Attach a code reference:**
 If your thought is linked to a specific implementation, you can track it with the `--ref` flag:
 ```bash
-den add --ref src/engine.py:42-50 "optimize renderer memory"
+den add fix this rendering issue --ref src/engine.py:42-50
 ```
 
 ### Edit a note
