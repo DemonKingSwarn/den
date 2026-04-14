@@ -1,6 +1,6 @@
 import sys
 from pathlib import Path
-from den.platform import Platform, platform
+from .platform import Platform, platform
 
 CONFIG_DIR_PATH = ""
 DATA_DIR_PATH = ""

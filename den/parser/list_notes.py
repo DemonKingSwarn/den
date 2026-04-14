@@ -1,8 +1,8 @@
 import argparse
 import shutil
-from den import colors
-from den.parser.project import get as get_project
-from den.parser.notes_helper import load_notes, format_note_line, format_note_context
+from .. import colors
+from ..parser.project import get as get_project
+from ..parser.notes_helper import load_notes, format_note_line, format_note_context
 
 
 def execute(_args: argparse.Namespace) -> None:

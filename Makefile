@@ -1,2 +1,4 @@
-all:
+install:
 	poetry install
+all:
+	install

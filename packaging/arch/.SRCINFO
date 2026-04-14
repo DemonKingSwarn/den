@@ -1,0 +1,11 @@
+pkgbase = den
+	pkgdesc = Braindumping for projects made easy.
+	pkgver = 0.1.0
+	pkgrel = 1
+	url = https://github.com/RaghavGohil/den
+	arch = x86_64
+	license = MIT
+	source = https://github.com/RaghavGohil/den/releases/download/0.1.0/den-0.1.0.tar.gz
+	sha256sums = SKIP
+
+pkgname = den

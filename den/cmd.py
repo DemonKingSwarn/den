@@ -9,7 +9,7 @@ Commands:
 
 import argparse
 
-from den.parser import den, list_notes, add_note, edit_note, remove_note
+from .parser import den, list_notes, add_note, edit_note, remove_note
 
 _parser = argparse.ArgumentParser(
     prog="den",

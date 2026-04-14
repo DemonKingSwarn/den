@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from datetime import datetime
 
-from den import paths, colors
+from .. import paths, colors
 
 
 def load_notes(project_uid: str) -> list:

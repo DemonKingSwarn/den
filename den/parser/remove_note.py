@@ -1,7 +1,7 @@
 import argparse
 
-from den.parser import note, project
-from den import colors
+from ..parser import note, project
+from .. import colors
 
 
 def execute(args: argparse.Namespace) -> None:

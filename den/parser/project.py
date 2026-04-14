@@ -3,7 +3,7 @@ import json
 import uuid
 from pathlib import Path
 
-from den import paths
+from .. import paths
 
 
 def _get_path() -> Path:

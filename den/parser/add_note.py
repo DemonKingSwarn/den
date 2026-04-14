@@ -1,6 +1,6 @@
 import argparse
-from den.parser.project import get as get_project
-from den.parser.note import add as add_note
+from ..parser.project import get as get_project
+from ..parser.note import add as add_note
 
 
 def execute(args: argparse.Namespace) -> None:

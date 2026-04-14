@@ -2,7 +2,7 @@
 Den - Braindumping for projects made easy.
 """
 
-from den import cmd
+from . import cmd
 
 
 def main() -> None:

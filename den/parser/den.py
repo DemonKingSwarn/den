@@ -10,8 +10,8 @@ import tempfile
 import argparse
 import subprocess
 
-from den.parser import note, project
-from den.parser.notes_helper import (
+from ..parser import note, project
+from ..parser.notes_helper import (
     load_notes,
     get_reference,
     read_reference_code,

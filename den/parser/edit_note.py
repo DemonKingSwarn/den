@@ -3,9 +3,9 @@ import tempfile
 import subprocess
 import argparse
 
-from den import colors
-from den.parser import note, project
-from den.parser.notes_helper import (
+from .. import colors
+from ..parser import note, project
+from ..parser.notes_helper import (
     load_notes,
     format_editor_content,
     parse_editor_content,
