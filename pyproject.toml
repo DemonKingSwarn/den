@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "den"
+name = "den-python"
 version = "0.1.0"
 description = "Braindumping for projects made easy."
 authors = [
