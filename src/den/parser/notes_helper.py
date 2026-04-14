@@ -7,7 +7,8 @@ import json
 from pathlib import Path
 from datetime import datetime
 
-from .. import paths, colors
+from .. import config
+from ..utils import colors
 
 
 def load_notes(project_uid: str) -> list:
@@ -15,7 +16,7 @@ def load_notes(project_uid: str) -> list:
     Load notes from the notes file for a project.
     Returns a list of note dicts, or an empty list on failure.
     """
-    notes_path = os.path.join(paths.DATA_DIR_PATH, project_uid, "notes.json")
+    notes_path = os.path.join(config.DATA_DIR_PATH, project_uid, "notes.json")
 
     try:
         with open(notes_path, "r") as f:

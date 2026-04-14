@@ -6,7 +6,7 @@ import argparse
 from pathlib import Path
 from typing import Optional
 
-from ..paths import DATA_DIR_PATH
+from ..config import DATA_DIR_PATH
 
 
 def _create_notes_file(project_uid: str) -> Path:

@@ -2,19 +2,27 @@
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/den"]
+
 [project]
 name = "den-python"
 version = "0.1.0"
 description = "Braindumping for projects made easy."
+readme = "README.md"
 requires-python = ">=3.12"
-
+authors = [
+    {name = "RaghavGohil", email = "raghavgohil2004@gmail.com"}
+]
 dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
 
 [project.scripts]
 den = "den.main:main"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/den"]
-
-[tool.hatch.build.targets.wheel.sources]
-"den" = "src/den"
+[project.urls]
+Homepage = "https://github.com/RaghavGohil/den"
+Repository = "https://github.com/RaghavGohil/den"
+Issues = "https://github.com/RaghavGohil/den/issues"

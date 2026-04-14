@@ -3,13 +3,9 @@ import tempfile
 import subprocess
 import argparse
 
-from .. import colors
-from ..parser import note, project
-from ..parser.notes_helper import (
-    load_notes,
-    format_editor_content,
-    parse_editor_content,
-)
+from ..utils import colors
+from . import note, project
+from . import notes_helper
 
 
 def execute(args: argparse.Namespace) -> None:
@@ -31,7 +27,7 @@ def execute(args: argparse.Namespace) -> None:
         print("Invalid project entry.")
         return
 
-    notes = load_notes(project_uid)
+    notes = notes_helper.load_notes(project_uid)
 
     if not notes:
         print("No notes to edit.")
@@ -46,7 +42,7 @@ def execute(args: argparse.Namespace) -> None:
         return
 
     n = notes[idx]
-    editor_text = format_editor_content(n)
+    editor_text = notes_helper.format_editor_content(n)
     editor = os.environ.get("EDITOR", "nano")
 
     try:
@@ -73,7 +69,7 @@ def execute(args: argparse.Namespace) -> None:
         except OSError:
             pass
 
-    new_content = parse_editor_content(raw)
+    new_content = notes_helper.parse_editor_content(raw)
 
     if new_content == n.get("content", ""):
         print(colors.dim("No changes made."))

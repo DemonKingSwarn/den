@@ -1,6 +1,6 @@
 import argparse
 import shutil
-from .. import colors
+from ..utils import colors
 from ..parser.project import get as get_project
 from ..parser.notes_helper import load_notes, format_note_line, format_note_context
 

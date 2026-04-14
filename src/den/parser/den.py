@@ -10,7 +10,8 @@ import tempfile
 import argparse
 import subprocess
 
-from ..parser import note, project
+from . import note, project
+
 from ..parser.notes_helper import (
     load_notes,
     get_reference,

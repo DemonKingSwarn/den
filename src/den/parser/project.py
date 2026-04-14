@@ -3,7 +3,7 @@ import json
 import uuid
 from pathlib import Path
 
-from .. import paths
+from .. import config
 
 
 def _get_path() -> Path:
@@ -25,11 +25,11 @@ def _create_projects_file() -> None:
     Create the projects.json file.
     """
     # Create config dir if not exists.
-    os.makedirs(paths.CONFIG_DIR_PATH, exist_ok=True)
+    os.makedirs(config.CONFIG_DIR_PATH, exist_ok=True)
 
     # Create and initialize projects file.
     try:
-        with open(os.path.join(paths.CONFIG_DIR_PATH, "projects.json"), "w") as f:
+        with open(os.path.join(config.CONFIG_DIR_PATH, "projects.json"), "w") as f:
             json.dump([], f)
     except OSError as e:
         raise OSError("Unable to create projects file", e)
@@ -39,7 +39,7 @@ def add(project_path: Path) -> dict:
     """
     Add the project to the projects file.
     """
-    projects_file = os.path.join(paths.CONFIG_DIR_PATH, "projects.json")
+    projects_file = os.path.join(config.CONFIG_DIR_PATH, "projects.json")
 
     try:
         with open(projects_file, "r+") as f:
@@ -94,11 +94,11 @@ def get() -> dict:
     if not project_path.name and not project_path.parts:
         raise ValueError("Run inside a git project.")
 
-    if not os.path.exists(os.path.join(paths.CONFIG_DIR_PATH, "projects.json")):
+    if not os.path.exists(os.path.join(config.CONFIG_DIR_PATH, "projects.json")):
         _create_projects_file()
 
     try:
-        with open(os.path.join(paths.CONFIG_DIR_PATH, "projects.json"), "r") as f:
+        with open(os.path.join(config.CONFIG_DIR_PATH, "projects.json"), "r") as f:
             try:
                 data = json.load(f)
             except json.JSONDecodeError:
@@ -110,7 +110,7 @@ def get() -> dict:
 
     except OSError as e:
         raise OSError(
-            f"Unable to read {os.path.join(paths.CONFIG_DIR_PATH, 'projects.json')}", e
+            f"Unable to read {os.path.join(config.CONFIG_DIR_PATH, 'projects.json')}", e
         )
 
     return add(project_path)
