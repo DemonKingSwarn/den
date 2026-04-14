@@ -3,14 +3,15 @@
 pkgname=den
 pkgver=0.1.0
 pkgrel=1
-pkgdesc="Braindumping for projects made easy."
+pkgdesc="CLI tool for capturing and organizing project notes and context"
 arch=('any')
 url="https://github.com/RaghavGohil/den"
 license=('MIT')
-source=("https://github.com/RaghavGohil/den/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz")
-sha256sums=('0f3d748aee07276f2550973e781f1acdf7add7f4f7d978b11c221a80e7461f59')
 
-depends=('python', 'python-pip')
+depends=('python' 'python-pip')
+
+source=("$pkgname-$pkgver.tar.gz::https://github.com/RaghavGohil/den/archive/v$pkgver.tar.gz")
+sha256sums=('SKIP')
 
 package() {
     cd "$srcdir/$pkgname-$pkgver"

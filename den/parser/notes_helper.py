@@ -36,7 +36,7 @@ def _format_timestamp(raw: str) -> str:
     try:
         dt = datetime.fromisoformat(raw)
         return dt.strftime("%d %b, %H:%M")
-    except ValueError, TypeError:
+    except (ValueError, TypeError):
         return raw or ""
 
 

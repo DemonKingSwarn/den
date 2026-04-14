@@ -494,7 +494,7 @@ class TUI:
             with open(tmp_path, "r") as f:
                 raw = f.read()
 
-        except subprocess.CalledProcessError, OSError:
+        except (subprocess.CalledProcessError, OSError):
             self.status_msg = "Editor error."
             return
         finally:
