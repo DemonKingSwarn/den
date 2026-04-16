@@ -1,12 +1,19 @@
 #!/usr/bin/env bash
 set -e
 
+pwd
+
 PKGNAME="den"
-VERSION="${1:-$(git describe --tags --abbrev=0 | sed 's/^v//')}"
+VERSION=$(python - <<'PY'
+import tomllib
+with open("pyproject.toml", "rb") as f:
+    print(tomllib.load(f)["project"]["version"])
+PY
+)
 PKGREL=1
 
 cat > PKGBUILD <<EOF
-#!/usr/bin/bash
+# Maintainer: RaghavGohil raghavgohil2004@gmail.com
 
 pkgname=${PKGNAME}
 pkgver=${VERSION}
