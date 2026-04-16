@@ -15,7 +15,7 @@ jobs:
         run: bash ./packaging/arch/generate-pkgbuild.bash
 
       - name: Publish AUR package
-        uses: KSXGitHub/github-actions-deploy-aur@<TAG>
+        uses: KSXGitHub/github-actions-deploy-aur@4.1.2
         with:
           pkgname: den
           pkgbuild: ./packaging/arch/PKGBUILD
