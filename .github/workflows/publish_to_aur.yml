@@ -1,0 +1,26 @@
+name: Publish to AUR
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  aur-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate PKGBUILD
+        run: bash ./packaging/arch/generate-pkgbuild.bash
+
+      - name: Publish AUR package
+        uses: KSXGitHub/github-actions-deploy-aur@<TAG>
+        with:
+          pkgname: den
+          pkgbuild: ./packaging/arch/PKGBUILD
+          commit_username: ${{ secrets.AUR_USERNAME }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
+          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_message: Update AUR package ${{ github.event.release.tag_name }}
+          ssh_keyscan_types: rsa,ecdsa,ed25519

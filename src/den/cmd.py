@@ -1,12 +1,3 @@
-"""
-Commands:
-    den             - Open an interactive session.
-    den ls          - List all notes.
-    den add <note>  - Add a new note (No need to add quotes).
-    den edit [id]   - Edit a note (default: most recent).
-    den rm [id]     - Remove a note (default: most recent).
-"""
-
 import argparse
 
 from .parser import den, list_notes, add_note, edit_note, remove_note

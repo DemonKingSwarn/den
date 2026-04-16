@@ -111,6 +111,10 @@ This project uses **no external dependencies** (outside of the Python standard l
 
 <br>
 
+## Additional notes
+
+If you find this project to be useful, please don't forget to leave a **star**. This keeps me motivated to continue working on the project.
+
 ## License
 
 [MIT License](LICENSE)
