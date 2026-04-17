@@ -24,3 +24,8 @@ replace = 'version = "{new_version}"'
 filename = "packaging/arch/generate-pkgbuild.bash"
 search = "VERSION={current_version}"
 replace = "VERSION={new_version}"
+
+[[tool.bumpversion.files]]
+filename = "packaging/debian/changelog"
+search = "den ({current_version}-1)"
+replace = "den ({new_version}-1)"

@@ -1,4 +1,4 @@
-name: Publish to AUR
+name: Release Package to AUR
 
 on:
   push:

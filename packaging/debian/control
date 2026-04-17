@@ -1,0 +1,13 @@
+Source: den
+Section: utils
+Priority: optional
+Maintainer: RaghavGohil <raghavgohil2004@gmail.com>
+Build-Depends: debhelper-compat (= 13), dh-python, python3-all, pybuild-plugin-pyproject, python3-hatchling
+Standards-Version: 4.6.2
+Homepage: https://github.com/RaghavGohil/den
+Rules-Requires-Root: no
+
+Package: den
+Architecture: all
+Depends: ${misc:Depends}, ${python3:Depends}, python3 (>= 3.12)
+Description: Braindumping for projects made easy.
