@@ -4,7 +4,7 @@ set -e
 pwd
 
 PKGNAME="den"
-VERSION=0.1.5
+VERSION=0.1.6
 PKGREL=1
 
 cat > PKGBUILD <<EOF
