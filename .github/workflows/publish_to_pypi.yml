@@ -3,14 +3,18 @@ name: Publish to PyPI
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 permissions:
   contents: read
   id-token: write
 
 jobs:
+  linting-and-testing:
+    uses: ./.github/workflows/linting_and_testing.yml
+
   build:
+    needs: linting-and-testing
     runs-on: ubuntu-latest
 
     steps:
