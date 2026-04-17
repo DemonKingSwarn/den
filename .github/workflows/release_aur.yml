@@ -9,7 +9,7 @@ jobs:
   linting-and-testing:
     uses: ./.github/workflows/linting_and_testing.yml
 
-  aur-publish:
+  release:
     needs: linting-and-testing
     runs-on: ubuntu-latest
     steps:
