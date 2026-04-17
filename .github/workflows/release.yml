@@ -10,7 +10,10 @@ jobs:
   linting-and-testing:
     uses: ./.github/workflows/linting_and_testing.yml
 
-  release:
+  # -------------------------
+  # PyPI
+  # -------------------------
+  pypi:
     needs: linting-and-testing
     runs-on: ubuntu-latest
     permissions:
@@ -18,24 +21,16 @@ jobs:
       contents: write
 
     steps:
-      # -------------------------
-      # Checkout
-      # -------------------------
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # -------------------------
-      # Python (PyPI build only)
-      # -------------------------
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install Python build tools
+      - name: Install build tools
         run: python -m pip install --upgrade pip build twine
 
-      - name: Build Python package
+      - name: Build package
         run: python -m build
 
       - name: Publish to PyPI
@@ -43,9 +38,16 @@ jobs:
         with:
           skip-existing: true
 
-      # -------------------------
-      # AUR
-      # -------------------------
+  # -------------------------
+  # AUR
+  # -------------------------
+  aur:
+    needs: pypi
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
       - name: Generate AUR data
         run: bash ./packaging/arch/generate-data.bash
 
@@ -61,14 +63,15 @@ jobs:
           ssh_keyscan_types: rsa,ecdsa,ed25519
           updpkgsums: true
 
-      # -------------------------
-      # Debian (separate env)
-      # -------------------------
-      - name: Reset to system Python
-        run: |
-          export PATH=/usr/bin:$PATH
-          which python3
-          python3 --version
+  # -------------------------
+  # Debian
+  # -------------------------
+  debian:
+    needs: pypi
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Install Debian build tools
         run: |
@@ -93,13 +96,9 @@ jobs:
 
       - name: Build Debian package
         run: |
-          set -e
           export DEB_BUILD_OPTIONS="nocheck"
           dpkg-buildpackage -us -uc -b
 
-      # -------------------------
-      # Release artifacts
-      # -------------------------
       - name: Upload Debian package
         uses: softprops/action-gh-release@v2
         with:
