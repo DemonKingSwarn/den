@@ -25,7 +25,11 @@ jobs:
             dh-python \
             devscripts \
             fakeroot \
-            python3-all
+            python3-all \
+            python3-hatchling \
+            python3-build \
+            python3-installer \
+            pybuild-plugin-pyproject
 
       - name: Prepare debian directory
         run: cp -r packaging/debian debian
