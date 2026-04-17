@@ -24,14 +24,34 @@
 
 ## Installation
 
-You can install `den` directly from the source:
+> [!IMPORTANT]
+> The PyPI package name is `den-python`, but the installed command is `den`. Requires **Python 3.12+**.
+
+### pip (PyPI)
+
+The recommended way to install `den` is using `pip` (or `pipx` for an isolated environment):
+
+```bash
+pip install den-python
+```
+
+### Arch Linux (AUR)
+
+If you are using Arch Linux, you can install from the AUR:
+
+```bash
+yay -S den
+```
+
+### From Source
+
+You can always clone and install directly from the source:
 
 ```bash
 git clone https://github.com/RaghavGohil/den.git
 cd den
-pip install -e .
+pip install .
 ```
-
 <br>
 
 ## Usage
@@ -43,11 +63,6 @@ den
 ```
 
 Opens an interactive **curses-based TUI** to quickly navigate and operate on your notes. 
-- **Navigation**: `j` / `k` (or arrows)
-- **Search**: `/` to start searching, `ESC` to clear
-- **View Note Details**: `Enter` to open view mode (shows attached code references)
-- **Edit / Delete**: `e` to edit, `d` to delete
-- **Quit**: `q` or `ESC`
 
 ### List notes
 
