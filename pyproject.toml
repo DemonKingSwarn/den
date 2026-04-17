@@ -7,7 +7,7 @@ packages = ["src/den"]
 
 [project]
 name = "den-python"
-version = "0.1.4"
+version = "0.1.5"
 description = "Braindumping for projects made easy."
 readme = "README.md"
 requires-python = ">=3.12"
