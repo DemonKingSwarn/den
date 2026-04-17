@@ -7,7 +7,7 @@ packages = ["src/den"]
 
 [project]
 name = "den-python"
-version = "0.1.2"
+version = "0.1.3"
 description = "Braindumping for projects made easy."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -16,9 +16,6 @@ authors = [
 ]
 dependencies = []
 
-[project.optional-dependencies]
-dev = ["pytest", "ruff"]
-
 [project.scripts]
 den = "den.main:main"
 
@@ -26,3 +23,6 @@ den = "den.main:main"
 Homepage = "https://github.com/RaghavGohil/den"
 Repository = "https://github.com/RaghavGohil/den"
 Issues = "https://github.com/RaghavGohil/den/issues"
+
+[dependency-groups]
+dev = []

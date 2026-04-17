@@ -4,12 +4,7 @@ set -e
 pwd
 
 PKGNAME="den"
-VERSION=$(python - <<'PY'
-import tomllib
-with open("pyproject.toml", "rb") as f:
-    print(tomllib.load(f)["project"]["version"])
-PY
-)
+VERSION=0.1.3
 PKGREL=1
 
 cat > PKGBUILD <<EOF
