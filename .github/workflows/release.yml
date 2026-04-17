@@ -18,17 +18,22 @@ jobs:
       contents: write
 
     steps:
+      # -------------------------
+      # Checkout
+      # -------------------------
       - name: Checkout
         uses: actions/checkout@v4
 
+      # -------------------------
+      # Python (PyPI build only)
+      # -------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install build tools
-        run: |
-          python -m pip install --upgrade pip build twine
+      - name: Install Python build tools
+        run: python -m pip install --upgrade pip build twine
 
       - name: Build Python package
         run: python -m build
@@ -38,7 +43,10 @@ jobs:
         with:
           skip-existing: true
 
-      - name: Generate Data Files for AUR
+      # -------------------------
+      # AUR
+      # -------------------------
+      - name: Generate AUR data
         run: bash ./packaging/arch/generate-data.bash
 
       - name: Publish AUR package
@@ -53,8 +61,14 @@ jobs:
           ssh_keyscan_types: rsa,ecdsa,ed25519
           updpkgsums: true
 
-      - name: Generate Data Files for Debian
-        run: bash ./packaging/debian/generate-data.bash
+      # -------------------------
+      # Debian (separate env)
+      # -------------------------
+      - name: Reset to system Python
+        run: |
+          export PATH=/usr/bin:$PATH
+          which python3
+          python3 --version
 
       - name: Install Debian build tools
         run: |
@@ -71,6 +85,9 @@ jobs:
             python3-installer \
             pybuild-plugin-pyproject
 
+      - name: Generate Debian data
+        run: bash ./packaging/debian/generate-data.bash
+
       - name: Prepare debian directory
         run: cp -r packaging/debian debian
 
@@ -80,7 +97,10 @@ jobs:
           export DEB_BUILD_OPTIONS="nocheck"
           dpkg-buildpackage -us -uc -b
 
-      - name: Upload Debian package to GitHub Release
+      # -------------------------
+      # Release artifacts
+      # -------------------------
+      - name: Upload Debian package
         uses: softprops/action-gh-release@v2
         with:
           files: ../*.deb
