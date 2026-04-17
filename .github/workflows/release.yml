@@ -38,8 +38,8 @@ jobs:
         with:
           skip-existing: true
 
-      - name: Generate PKGBUILD
-        run: bash ./packaging/arch/generate-pkgbuild.bash
+      - name: Generate Data Files for AUR
+        run: bash ./packaging/arch/generate-data.bash
 
       - name: Publish AUR package
         uses: KSXGitHub/github-actions-deploy-aur@v4.1.2
@@ -52,6 +52,9 @@ jobs:
           commit_message: Update AUR package
           ssh_keyscan_types: rsa,ecdsa,ed25519
           updpkgsums: true
+
+      - name: Generate Data Files for Debian
+        run: bash ./packaging/debian/generate-data.bash
 
       - name: Install Debian build tools
         run: |
