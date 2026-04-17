@@ -4,7 +4,6 @@ on:
   push:
     tags:
       - "v*"
-  workflow_dispatch:
 
 jobs:
   linting-and-testing:
@@ -42,7 +41,6 @@ jobs:
   # AUR
   # -------------------------
   aur:
-    needs: pypi
     runs-on: ubuntu-latest
 
     steps:
@@ -67,7 +65,6 @@ jobs:
   # Debian
   # -------------------------
   debian:
-    needs: pypi
     runs-on: ubuntu-latest
 
     steps:
