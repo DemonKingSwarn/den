@@ -4,12 +4,14 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
 
 jobs:
   linting-and-testing:
     uses: ./.github/workflows/linting_and_testing.yml
 
   release:
+    needs: linting-and-testing
     runs-on: ubuntu-latest
     permissions:
       contents: write

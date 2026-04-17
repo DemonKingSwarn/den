@@ -2,9 +2,11 @@ name: Linting and Testing
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+    tags-ignore:
+      - "v*"
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_call:
 
 jobs:
@@ -18,12 +20,12 @@ jobs:
       - run: pip install ruff
       - run: ruff check .
 
-  # test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: actions/setup-python@v5
-  #       with:
-  #         python-version: "3.12"
-  #     - run: pip install -e ".[dev]"
-  #     - run: pytest
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: pytest
