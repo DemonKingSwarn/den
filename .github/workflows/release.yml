@@ -1,10 +1,14 @@
 # Fail first (if something fails, add manually. Don't create a new tag)
-name: Release the Package
+name: Release
 
 on:
   push:
     tags:
       - "v*"
+
+permissions:
+  id-token: write
+  contents: write
 
 jobs:
   linting-and-testing:
@@ -16,10 +20,6 @@ jobs:
   pypi:
     needs: linting-and-testing
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: write
-
     steps:
       - uses: actions/checkout@v4
 
@@ -40,8 +40,8 @@ jobs:
   # AUR
   # -------------------------
   aur:
+    needs: linting-and-testing
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
@@ -64,8 +64,8 @@ jobs:
   # Debian
   # -------------------------
   debian:
+    needs: linting-and-testing
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
