@@ -13,6 +13,8 @@
   <img src="https://img.shields.io/badge/cli-tool-black" alt="CLI Tool" />
 </p>
 
+## Overview
+
 ### My Problem
 
 When working in a complex codebase, I need a fast way to capture and retrieve context tied to specific parts of the project.
