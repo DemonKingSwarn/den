@@ -21,11 +21,11 @@ search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
 [[tool.bumpversion.files]]
-filename = "packaging/arch/generate-pkgbuild.bash"
+filename = "packaging/arch/generate-data.bash"
 search = "VERSION={current_version}"
 replace = "VERSION={new_version}"
 
 [[tool.bumpversion.files]]
-filename = "packaging/debian/changelog"
-search = "den ({current_version}-1)"
-replace = "den ({new_version}-1)"
+filename = "packaging/debian/generate-data.bash"
+search = "VERSION={current_version}"
+replace = "VERSION={new_version}"
