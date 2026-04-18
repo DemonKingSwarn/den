@@ -7,7 +7,7 @@ packages = ["src/den"]
 
 [project]
 name = "den-python"
-version = "0.1.1"
+version = "0.1.2"
 description = "Context management for projects made easy."
 readme = "README.md"
 requires-python = ">=3.12"

@@ -5,7 +5,7 @@ PKG="den"
 EMAIL="raghavgohil2004@gmail.com"
 NAME="RaghavGohil"
 
-VERSION=0.1.1
+VERSION=0.1.2
 FULL_VERSION="${VERSION}-1"
 DATE=$(date -R)
 
