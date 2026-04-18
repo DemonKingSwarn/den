@@ -1,5 +1,5 @@
 """
-Den - Braindumping for projects made easy.
+Den - Context management for projects made easy.
 """
 
 from . import cmd

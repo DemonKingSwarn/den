@@ -1,3 +1,4 @@
+# Fail first (if something fails, add manually. Don't create a new tag)
 name: Release the Package
 
 on:
@@ -34,8 +35,6 @@ jobs:
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          skip-existing: true
 
   # -------------------------
   # AUR

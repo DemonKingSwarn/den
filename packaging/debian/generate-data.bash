@@ -34,7 +34,7 @@ Rules-Requires-Root: no
 Package: ${PKG}
 Architecture: all
 Depends: \${misc:Depends}, \${python3:Depends}, python3 (>= 3.12)
-Description: Braindumping for projects made easy.
+Description: Context management for projects made easy.
 EOF
 
 # -------- rules --------

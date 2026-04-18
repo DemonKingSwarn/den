@@ -4,7 +4,7 @@ from .parser import den, list_notes, add_note, edit_note, remove_note
 
 _parser = argparse.ArgumentParser(
     prog="den",
-    description="Braindumping for projects made easy.",
+    description="Context management for projects made easy.",
 )
 
 _parser.set_defaults(func=den.execute)

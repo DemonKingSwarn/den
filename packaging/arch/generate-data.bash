@@ -13,7 +13,7 @@ cat > PKGBUILD <<EOF
 pkgname=${PKGNAME}
 pkgver=${VERSION}
 pkgrel=${PKGREL}
-pkgdesc="Braindumping for projects made easy."
+pkgdesc="Context management for projects made easy."
 arch=('any')
 url="https://github.com/RaghavGohil/den"
 license=('MIT')
