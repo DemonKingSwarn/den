@@ -61,10 +61,16 @@ yay -S den
 
 ### Debian
 
-If you are using a debian based system, you can install from [releases](https://github.com/RaghavGohil/den/releases):
+If you are using a Debian-based system, you can install den from the following apt repository:
 
 ```bash
-sudo apt install ./den-version.deb
+curl -fsSL https://demonkingswarn.is-a.dev/debmon-repo/pubkey.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/debmon-repo.gpg
+
+echo "deb [arch=amd64] https://demonkingswarn.is-a.dev/debmon-repo stable main" | sudo tee /etc/apt/sources.list.d/debmon-repo.list
+
+sudo apt update
+
+sudo apt install -y den
 ```
 
 ### From Source
